@@ -18,7 +18,7 @@ fonction :
      sommeMem : feuille
 contexte :
      i : registre a0
-     res : registre t0
+     res : mémoire, allouée par sommeMem
      
  */
 sommeMem:
