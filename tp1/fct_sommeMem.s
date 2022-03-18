@@ -15,10 +15,10 @@ uint32_t sommeMem(void)
     .globl sommeMem
 /* DEBUT DU CONTEXTE
 fonction :
-     sommeMem  : feuille
+     sommeMem : feuille
 contexte :
      i : registre a0
-     res      : registre t0
+     res : registre t0
      
  */
 sommeMem:
