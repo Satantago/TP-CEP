@@ -15,14 +15,11 @@ uint32_t mult_simple(void)
     .globl mult_simple
 /* DEBUT DU CONTEXTE
 fonction :
-     nom_de_fonction  : feuille ou non feuille
+     mult_simple  : feuille
 contexte :
-     parametre_0      : registre a0
-     parametre_1      : registre ai; pile *(sp+n)
-     variable_locale0 : registre t0
-     variable_locale1 : pile *(sp+k)
-     ra               : pile *(sp+p)
-     variable_globale : memoire [section nom_de_section]
+     res : mémoire, allouée par mult_simple
+     x : mémoire, allouée par mult_simple
+     y : mémoire, allouée par mult_simple
  */
 mult_simple:
 mult_simple_fin_prologue:
