@@ -10,17 +10,19 @@ uint32_t mult_native(void)
     .globl mult_native
 /* DEBUT DU CONTEXTE
 fonction :
-     nom_de_fonction  : feuille ou non feuille
+     mult_native  : feuille
 contexte :
-     parametre_0      : registre a0
-     parametre_1      : registre ai; pile *(sp+n)
-     variable_locale0 : registre t0
-     variable_locale1 : pile *(sp+k)
-     ra               : pile *(sp+p)
-     variable_globale : memoire [section nom_de_section]
+     x : memoire
+     y : memoire
  */
 mult_native:
 mult_native_fin_prologue:
-/* A compléter */
+lw t1 , x
+lw t2 , y
+mul t0 , t1 , t2
+mv a0 , t0
 mult_native_debut_epilogue:
     ret
+    .data
+    .comm x , 4
+    .comm y , 4
