@@ -1,5 +1,4 @@
 #include "cep_platform.h"
-.text
 /*
 uint8_t blink;
 void mon_vecteur(void)
@@ -13,6 +12,8 @@ void mon_vecteur(void)
     - Retour de traitant (instruction mret)
 }
 */
+
+.text
 .globl mon_vecteur
 
 mon_vecteur:
@@ -49,6 +50,7 @@ mon_vecteur:
     lw   t2, 8(sp)
     addi sp, sp, 12
     /* retour vers l'instruction interrompue (mret) */
+retour_traitant_interruption:
     mret
 
 /* fonction d'attente fournie permettant de lever certaines erreurs */
@@ -68,4 +70,4 @@ boucle:
 
 .data
 /* uint8_t blink; */
-.lcomm blink, 1
+blink:  .byte 0

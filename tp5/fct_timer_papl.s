@@ -3,7 +3,7 @@
 .globl reveil
 /* void reveil(uint32_t delta_t); */
 reveil:
-/* A completer */
+/* A reprendre depuis fct_timer.s */
     ret
 
 .globl gestion_interruptions
