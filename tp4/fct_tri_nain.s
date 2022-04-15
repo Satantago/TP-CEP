@@ -22,16 +22,50 @@ void tri_nain(int32_t tab[], uint32_t taille)
     .globl tri_nain
 /* DEBUT DU CONTEXTE
 fonction :
-     nom_de_fonction  : feuille ou non feuille
+     tri_nain  : feuille
 contexte :
-     parametre_0      : registre a0
-     parametre_1      : registre ai; pile *(sp+n)
-     variable_locale0 : registre t0
-     variable_locale1 : pile *(sp+k)
-     ra               : pile *(sp+p)
-     variable_globale : memoire [section nom_de_section]
+     tab      : registre a0
+     taille      : registre ai
+     i : registre t0
+     tmp : registre t6
  */
 tri_nain:
 tri_nain_fin_prologue:
+    /* uint32_t i = 0; */
+    li t0, 0
+    /* t1 <- taille */
+    addi t1, a1, -1
+    /* while(i < taille - 1) */
+
+while:
+    addi t1, a1, -1
+    slt t2, t0, t1
+    beqz t2, tri_nain_debut_epilogue
+    /* accéder à tab[i] et tab[i+1] */ 
+    slli t2, t0, 2
+    add t2, a0, t2
+    lw t3, 0(t2)
+    lw t6, 4(t2)
+    slt t5, t6, t3
+
+
+    beqz t5, else
+    /* int32_t tmp = tab[i] */
+    mv a6, t3
+    /*tab[i] = tab[i+1];*/
+    sw t6, 0(t2)
+    /* tab[i+1] = tmp */
+    sw a6, 4(t2)
+    /* if i > 0: i-= 1 */
+    slt a2, zero, t0
+    beqz a2, while
+    addi t0, t0, -1
+    j while
+else:
+    addi t0, t0, 1
+    j while
+
+
+
 tri_nain_debut_epilogue:
     ret
