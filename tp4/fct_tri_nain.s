@@ -25,9 +25,9 @@ fonction :
      tri_nain  : feuille
 contexte :
      tab      : registre a0
-     taille      : registre ai
+     taille      : registre a1
      i : registre t0
-     tmp : registre t6
+     tmp : registre a6
  */
 tri_nain:
 tri_nain_fin_prologue:

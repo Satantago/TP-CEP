@@ -36,40 +36,34 @@ abr_est_present_fin_prologue:
     /* abr != NULL alors il faut redonner à a0 sa valeur initiale */
     lw a0, 0(sp)
 
-    /* ------------------------------------------------------------- */
-
 
     /* t0 <- abr->value */
     lw t0, 0(a1)
     /* donner à a0 la valeur 1 au cas où abr->val == val*/
     li a0, 1
     /* if val == abr->val   */
-    beq a0, t0, abr_est_present_debut_epilogue
+    lw t6 , 0(sp)
+    beq t6, t0, abr_est_present_debut_epilogue
     /* abr->val != val alors il faut redonner à a0 sa valeur initiale*/
     lw a0, 0(sp)
 
 
 
-    /* -------------------------------------------------------------- */
-
+    lw t0, 0(a1)
     /* if val < abr->val */
     slt t1, a0, t0
     beqz t1, else
     /* return abr_est_present(val, abr->fg); */
     lw a1, 4(a1)
     jal abr_est_present
-    lw a1, 4(sp)
     j abr_est_present_debut_epilogue
-
-
-
-
+    lw a1, 4(sp)
 
 else: /* on refait le même truc */
     lw a1, 8(a1)
     jal abr_est_present
-    lw a1, 8(sp)
     j abr_est_present_debut_epilogue
+    lw a1, 8(sp)
 
 abr_est_present_debut_epilogue:
     lw   ra, 8(sp)
