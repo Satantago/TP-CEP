@@ -53,6 +53,8 @@ while:
     /* int32_t tmp = tab[i] */
     mv a6, t3
     /*tab[i] = tab[i+1];*/
+    lw t3, 0(t2)
+    lw t6, 4(t2)
     sw t6, 0(t2)
     /* tab[i+1] = tmp */
     sw a6, 4(t2)
